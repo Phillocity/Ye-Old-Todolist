@@ -1,12 +1,18 @@
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo List App</title>
 </head>
-<body>
-  <h1><%= `${jsHour}:${jsMinute}:${jsSecond}` %> </h1>
 
+<body>
+  <%  if (jsDay === "Saturday" || jsDay === "Sunday"){ %>
+  <h1 style="color: rgb(0, 172, 86)">Today is a weekend! <%= ` (${jsDay}) At a time of ${jsHour}:${jsMinute}:${jsSecond}.` %></h1>
+  <% }else { %>
+  <h1>Today is a weekday! <%=`(${jsDay}) At a time of ${jsHour}:${jsMinute}:${jsSecond}.` %></h1>
+  <% } %>
 </body>
+
 </html>
