@@ -1,28 +1,22 @@
-<html lang="en">
+<%- include("header") -%>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todo List App</title>
-</head>
+<div class="box" id="heading">
+  <h1>Todo List App <br> <%= jsDay %> </h1>
+</div>
 
-<body>
-  <h1>Todo List App - <%= jsDay %> </h1>
+<div class="box">
   <ul>
-    <li>Buy groceries</li>
-    <li>Clean the house</li>
-    <li>Film a movie</li>
-    <li>Go to the gym</li>
-
     <% for(let i = 0; i < list.length; i++) { %>
-      <li><%= list[i] %></li>
+    <div class="item">
+      <input type="checkbox">
+      <p><%= list[i] %></p>
+    </div>
     <% } %>
   </ul>
+  <form class="item" method="post" action="/">
+    <input type="text" name="task" placeholder="Add a task" autocomplete="off">
+    <button type="submit">+</button>
+  </form>
+</div>
 
-  <form method="post" action="/">
-    <input type="text" name="task" placeholder="Add a task">
-    <input type="submit" value="Add">
-</body>
-
-</html>
+<%- include("footer") -%>
