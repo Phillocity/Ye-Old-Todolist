@@ -6,8 +6,9 @@ import bodyParser from "body-parser";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const app = express();
-const port = process.env.PORT || 8080;
+const app: express.Application = express();
+const port: any = process.env.PORT || 8080;
+const taskList: any[] = [];
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,36 +16,22 @@ app.listen(port);
 
 app.get("/", (req: Request, res: Response) => {
   const now: Date = new Date();
-  let day: any = now.getDay();
-  const hour: number = now.getHours();
-  const minute: number = now.getMinutes();
-  const second: number = now.getSeconds();
+  const options: Object = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const today: String = now.toLocaleDateString("en-US", options);
 
-  switch (day) {
-    case 0:
-      day = "Sunday";
-      break;
-    case 1:
-      day = "Monday";
-      break;
-    case 2:
-      day = "Tuesday";
-      break;
-    case 3:
-      day = "Wednesday";
-      break;
-    case 4:
-      day = "Thursday";
-      break;
-    case 5:
-      day = "Friday";
-      break;
-    case 6:
-      day = "Saturday";
-      break;
-    default:
-      console.log(`There was an issue with the day: ${day}`);
+  res.render("list", { jsDay: today, list: taskList });
+});
+
+app.post("/", (req: Request, res: Response) => {
+  const task: String = req.body.task;
+  if (task !== null && task !== "") {
+    console.log(taskList);
+    taskList.push(task);
+    res.redirect("/");
   }
-
-  res.render("list", { jsHour: hour, jsMinute: minute, jsSecond: second, jsDay: day});
 });

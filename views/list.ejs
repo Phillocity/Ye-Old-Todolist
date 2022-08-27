@@ -8,11 +8,21 @@
 </head>
 
 <body>
-  <%  if (jsDay === "Saturday" || jsDay === "Sunday"){ %>
-  <h1 style="color: rgb(0, 172, 86)">Today is a weekend! <%= ` (${jsDay}) At a time of ${jsHour}:${jsMinute}:${jsSecond}.` %></h1>
-  <% }else { %>
-  <h1>Today is a weekday! <%=`(${jsDay}) At a time of ${jsHour}:${jsMinute}:${jsSecond}.` %></h1>
-  <% } %>
+  <h1>Todo List App - <%= jsDay %> </h1>
+  <ul>
+    <li>Buy groceries</li>
+    <li>Clean the house</li>
+    <li>Film a movie</li>
+    <li>Go to the gym</li>
+
+    <% for(let i = 0; i < list.length; i++) { %>
+      <li><%= list[i] %></li>
+    <% } %>
+  </ul>
+
+  <form method="post" action="/">
+    <input type="text" name="task" placeholder="Add a task">
+    <input type="submit" value="Add">
 </body>
 
 </html>
