@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import bodyParser from "body-parser";
+import * as dateFormat from "./date.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -16,22 +17,14 @@ app.use(express.static(__dirname + "/public"));
 app.listen(port);
 
 app.get("/", (req: Request, res: Response) => {
-  const now: Date = new Date();
-  const options: Object = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const today: String = now.toLocaleDateString("en-US", options);
-
-  res.render("list", { jsDay: today, list: taskList });
+  const date = dateFormat.getDate();
+  const today = dateFormat.getDay();
+  res.render("list", { jsDate: date, jsDay: today, list: taskList });
 });
 
 app.post("/", (req: Request, res: Response) => {
   const task: String = req.body.task;
   if (task !== null && task !== "") {
-    console.log(taskList);
     taskList.push(task);
     res.redirect("/");
   }
