@@ -11,8 +11,6 @@ h1 {
 }
 
 .box {
-  max-width: 400px;
-  margin: 50px auto;
   background: white;
   border-radius: 5px;
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
@@ -53,6 +51,7 @@ input::placeholder {
 }
 
 input[type=checkbox] {
+  accent-color: #04C5A1;
   margin: 20px;
 }
 
@@ -64,9 +63,13 @@ p {
   color: #00204a;
 }
 
-form {
+form.item {
   text-align: center;
   margin-left: 20px;
+}
+
+form {
+  margin: 0;
 }
 
 button {

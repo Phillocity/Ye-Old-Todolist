@@ -1,21 +1,24 @@
 <%- include("header") -%>
 
-<div class="box" id="heading">
+
+<div class="box col-4 mt-5" id="heading">
   <h1>Todo List<br> <%= jsDay %>, <%= jsDate %> </h1>
 </div>
 
-<div class="box">
-  <ul>
-    <% for(let i = 0; i < list.length; i++) { %>
-    <div class="item">
-      <input type="checkbox">
-      <p><%= list[i] %></p>
-    </div>
-    <% } %>
-  </ul>
+<div class="box d-flex flex-column col-4">
+
+  <%list.forEach( task => { %>
+  <div class="item overflow-hidden mx-3">
+    <form class="m-0" method="post" action="/delete">
+      <input type="checkbox" name="checkbox" value="<%=task.id%>" onChange="this.form.submit()">
+    </form>
+    <p class="m-0 flex-grow-1"><%= task.name %></p>
+  </div>
+  <% }) %>
+
   <form class="item" method="post" action="/">
-    <input type="text" name="task" placeholder="Add a task" autocomplete="off">
-    <button type="submit">+</button>
+    <input class="flex-grow-1"type="text" name="task" placeholder="Add a task" autocomplete="off">
+    <button class="rounded-pill mx-3" type="submit">+</button>
   </form>
 </div>
 
