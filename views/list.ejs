@@ -11,7 +11,7 @@
   <div class="item overflow-hidden mx-3">
     <form class="m-0" method="post" action="/delete">
       <input type="checkbox" name="checkbox" value="<%=task.id%>" onChange="this.form.submit()">
-      <input type="hidden" name="id" value="<%=jsListname%>">
+      <input type="hidden" name="listname" value="<%=jsListName%>">
     </form>
     <p class="m-0 flex-grow-1"><%= task.name %></p>
   </div>

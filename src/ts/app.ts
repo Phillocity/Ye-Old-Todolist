@@ -113,9 +113,21 @@ app.post("/", (req: Request, res: Response) => {
 
 app.post("/delete", (req: Request, res: Response) => {
   const checkedId: String = req.body.checkbox;
-  Task.findByIdAndRemove(checkedId, (err: any) => {
-    err ? console.log(err) : res.redirect("/");
-  });
+  const listName: String = req.body.listname;
+
+  if (listName === "Normal") {
+    Task.findByIdAndRemove(checkedId, (err: any) => {
+      err ? console.log(err) : res.redirect("/");
+    });
+  } else {
+    List.findOneAndUpdate(
+      { name: listName },
+      { $pull: { items: { _id: checkedId } } },
+      (err: any) => {
+        err ? console.log(err) : res.redirect("/" + listName);
+      }
+    );
+  }
 });
 
 app.get("/:customURL", (req: Request, res: Response) => {
