@@ -2,7 +2,7 @@
 
 
 <div class="box col-4 mt-5" id="heading">
-  <h1>Todo List<br> <%= jsDay %>, <%= jsDate %> </h1>
+  <h1 style="text-transform: capitalize"><%= jsListName %> List<br> <%= jsDay %>, <%= jsDate %> </h1>
 </div>
 
 <div class="box d-flex flex-column col-4">
@@ -18,7 +18,7 @@
 
   <form class="item" method="post" action="/">
     <input class="flex-grow-1"type="text" name="task" placeholder="Add a task" autocomplete="off">
-    <button class="rounded-pill mx-3" type="submit">+</button>
+    <button class="rounded-pill mx-3" name="list" value="<%= jsListName %>" type="submit">+</button>
   </form>
 </div>
 
