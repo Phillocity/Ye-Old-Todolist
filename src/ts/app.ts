@@ -86,7 +86,10 @@ app.get("/", (req: Request, res: Response) => {
 app.post("/", (req: Request, res: Response) => {
   const task: String = req.body.task;
   const listName: String = req.body.list;
-  // if (task === null && task === "") return;
+  if (task.length === 0) {
+    res.redirect("/");
+    return;
+  }
 
   const newTask = new Task({
     name: task,
